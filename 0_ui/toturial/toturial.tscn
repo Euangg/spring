@@ -1,0 +1,299 @@
+[gd_scene format=3 uid="uid://dvs1gcpq4ndap"]
+
+[ext_resource type="Script" uid="uid://ekyl7sf8uw3o" path="res://0_ui/toturial/toturial.gd" id="1_utd3k"]
+[ext_resource type="PackedScene" uid="uid://ddx7ustv2r72f" path="res://road.tscn" id="2_m5684"]
+[ext_resource type="PackedScene" uid="uid://dn3sb41verlyj" path="res://0_people/people.tscn" id="3_a18xn"]
+[ext_resource type="Texture2D" uid="uid://yb08pav3ra0w" path="res://HDRI-20.exr" id="4_qcoqw"]
+[ext_resource type="PackedScene" uid="uid://d1ulsuaqobgbw" path="res://0_entity/motor.tscn" id="5_a18xn"]
+[ext_resource type="PackedScene" uid="uid://rmgky52d5my7" path="res://0_box/box.tscn" id="5_m5684"]
+[ext_resource type="PackedScene" uid="uid://due6j0es4d4s3" path="res://0_box/word/word.tscn" id="7_qcoqw"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cec2y"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vkqoe"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_m5684"]
+viewport_path = NodePath("SubViewport3")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_a18xn"]
+viewport_path = NodePath("SubViewport4")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qcoqw"]
+viewport_path = NodePath("SubViewport5")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xyqbw"]
+viewport_path = NodePath("SubViewport6")
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_wnoy8"]
+panorama = ExtResource("4_qcoqw")
+
+[sub_resource type="Sky" id="Sky_utd3k"]
+sky_material = SubResource("PanoramaSkyMaterial_wnoy8")
+
+[sub_resource type="Environment" id="Environment_atlpv"]
+background_mode = 2
+sky = SubResource("Sky_utd3k")
+sky_rotation = Vector3(0, 3.1415927, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_utd3k"]
+resource_local_to_scene = true
+albedo_color = Color(1, 1, 0, 1)
+uv1_scale = Vector3(-1, 1, 1)
+texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_co6qv"]
+size = Vector3(15.583862, 120.601135, 365.51447)
+
+[node name="Toturial" type="Control" unique_id=558355207]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_utd3k")
+
+[node name="road_export" parent="." unique_id=1906258520 instance=ExtResource("2_m5684")]
+transform = Transform3D(-8.742278e-07, 0, -60, 0, 50, 0, 20, 0, -2.6226833e-06, 0, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=2113024479]
+transform = Transform3D(50.00001, 0, 0, 0, 50, 0, 0, 0, 49.99999, -358.89755, 39.267513, -7.2099566)
+texture_filter = 0
+texture = SubResource("ViewportTexture_cec2y")
+
+[node name="Hybrid2D3DSprite" type="Hybrid2D3DSprite" parent="." unique_id=932055190]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -247.41565, 12.973434, -5.488077)
+texture = SubResource("ViewportTexture_vkqoe")
+
+[node name="Hybrid2D3DSprite2" type="Hybrid2D3DSprite" parent="." unique_id=1400278723]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -95.17462, 12.973434, -5.488077)
+texture = SubResource("ViewportTexture_m5684")
+
+[node name="Hybrid2D3DSprite3" type="Hybrid2D3DSprite" parent="." unique_id=1690047439]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 27.5522, 12.973434, -5.488077)
+texture = SubResource("ViewportTexture_a18xn")
+
+[node name="Hybrid2D3DSprite4" type="Hybrid2D3DSprite" parent="." unique_id=982827100]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 219.75807, 12.973434, -5.488077)
+texture = SubResource("ViewportTexture_qcoqw")
+
+[node name="Hybrid2D3DSprite5" type="Hybrid2D3DSprite" parent="." unique_id=1852753601]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 463.48856, 12.973434, -5.488077)
+texture = SubResource("ViewportTexture_xyqbw")
+
+[node name="People" parent="." unique_id=168399767 instance=ExtResource("3_a18xn")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -392.21457, 0, 28.522736)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="People" unique_id=656989190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 80)
+remote_path = NodePath("../../Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=480329592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -392.21457, 30, 108.522736)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1711476958]
+transform = Transform3D(1, 0, 0, 0, -0.61760384, 0.78648937, 0, -0.78648937, -0.61760384, 0, 15.6633625, 8.938957)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1456419891]
+environment = SubResource("Environment_atlpv")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1821897432]
+transparent_bg = true
+size = Vector2i(144, 144)
+render_target_update_mode = 1
+
+[node name="Label" type="Label" parent="SubViewport" unique_id=999434492]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -40.5
+offset_right = 32.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "WASD移动
+空格跳跃"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport2" type="SubViewport" parent="." unique_id=1167799642]
+transparent_bg = true
+size = Vector2i(160, 144)
+
+[node name="Label" type="Label" parent="SubViewport2" unique_id=595811157]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -40.5
+offset_right = 32.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 30
+text = "J-泰森直拳
+K-曼巴迅腿"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport3" type="SubViewport" parent="." unique_id=443135650]
+transparent_bg = true
+size = Vector2i(230, 144)
+
+[node name="Label" type="Label" parent="SubViewport3" unique_id=459260868]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -40.5
+offset_right = 32.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.6627451, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 30
+text = "靠近方块/物品时
+J或K-捡起来"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport4" type="SubViewport" parent="." unique_id=826665387]
+transparent_bg = true
+size = Vector2i(230, 144)
+
+[node name="Label" type="Label" parent="SubViewport4" unique_id=1988755696]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -40.5
+offset_right = 32.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.6627451, 0.36078432, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 30
+text = "手上举着东西时
+J或K-丢出去"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport5" type="SubViewport" parent="." unique_id=1228862934]
+transparent_bg = true
+size = Vector2i(510, 144)
+
+[node name="Label" type="Label" parent="SubViewport5" unique_id=1589730595]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -40.5
+offset_right = 32.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.6627451, 0.36078432, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 30
+text = "字块可以合成，将两块字叠在一起
+例如：莫+土=墓->墓碑"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport6" type="SubViewport" parent="." unique_id=1907665244]
+transparent_bg = true
+size = Vector2i(510, 144)
+
+[node name="Label" type="Label" parent="SubViewport6" unique_id=1900112983]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -40.5
+offset_right = 32.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.6627451, 0.36078432, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 30
+text = "学完了、去混"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=665562397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -319.1414, 5.8014603, 28.757563)
+use_collision = true
+collision_mask = 0
+size = Vector3(13.58606, 12.824341, 60.589634)
+material = SubResource("StandardMaterial3D_utd3k")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=604039045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 103.9577, 5.8014603, 28.757563)
+use_collision = true
+collision_mask = 0
+size = Vector3(13.58606, 12.824341, 60.589634)
+material = SubResource("StandardMaterial3D_utd3k")
+
+[node name="People2" parent="." unique_id=1048694613 instance=ExtResource("3_a18xn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -185.91902, 1.4762907, 29.660755)
+direction = -1
+
+[node name="Box" parent="." unique_id=788388702 instance=ExtResource("5_m5684")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.202824, 0, 28.312315)
+
+[node name="Motor" parent="." unique_id=135290015 instance=ExtResource("5_a18xn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8482151, 0.6444206, 48.708374)
+
+[node name="Word" parent="." unique_id=18664101 instance=ExtResource("7_qcoqw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176.67947, 0.6275177, 28.38668)
+word = "莫"
+
+[node name="Word2" parent="." unique_id=64357244 instance=ExtResource("7_qcoqw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 222.83252, 0.6275177, 28.38668)
+word = "土"
+
+[node name="Word3" parent="." unique_id=1829161222 instance=ExtResource("7_qcoqw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.508217, 0.6275177, 6.0096207)
+word = "手"
+
+[node name="Word4" parent="." unique_id=2033085041 instance=ExtResource("7_qcoqw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -146.87994, 0.6275177, 6.0096207)
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1653295141]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=667219024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 477.2578, 54.21482, -75.43039)
+shape = SubResource("BoxShape3D_co6qv")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

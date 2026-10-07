@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://due6j0es4d4s3"]
+
+[ext_resource type="PackedScene" uid="uid://rmgky52d5my7" path="res://0_box/box.tscn" id="1_nwcic"]
+[ext_resource type="Script" uid="uid://c0i1ajlet6jwd" path="res://0_box/word/word.gd" id="2_ji23d"]
+[ext_resource type="Texture2D" uid="uid://ynk36cf0352p" path="res://0_box/word/Frame 30.png" id="3_ym3pi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ncbvf"]
+size = Vector3(11.972, 11.981, 5)
+
+[node name="Word" unique_id=788388702 instance=ExtResource("1_nwcic")]
+script = ExtResource("2_ji23d")
+word = "麻"
+
+[node name="Sprite" parent="Pivot" parent_id_path=PackedInt32Array(999384823) index="0" unique_id=488656511]
+unique_name_in_owner = true
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 5.611, 0)
+texture = ExtResource("3_ym3pi")
+hframes = 5
+vframes = 1
+frame = 4
+
+[node name="CollisionShape3D" parent="." index="1" unique_id=503121629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9831815, 0)
+shape = SubResource("BoxShape3D_ncbvf")
+
+[node name="CollisionShape3D" parent="Body" parent_id_path=PackedInt32Array(342860367) index="0" unique_id=1384378051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9831815, 0)
+shape = SubResource("BoxShape3D_ncbvf")
+
+[connection signal="stepped_05" from="." to="." method="_on_stepped_05"]

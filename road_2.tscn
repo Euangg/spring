@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bsfcx1bgkoexf"]
+
+[ext_resource type="PackedScene" uid="uid://dh8kibtwh3jab" path="res://glb/road2.glb" id="1_a3qcb"]
+
+[node name="road2" unique_id=1346195287 instance=ExtResource("1_a3qcb")]

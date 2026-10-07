@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://tgjhxy20nsg4"]
+
+[ext_resource type="Script" uid="uid://bu10sb46jydls" path="res://test.gd" id="1_8uh7m"]
+[ext_resource type="PackedScene" uid="uid://dn3sb41verlyj" path="res://0_people/people.tscn" id="1_37kl0"]
+[ext_resource type="PackedScene" uid="uid://rmgky52d5my7" path="res://0_box/box.tscn" id="2_6uqi0"]
+[ext_resource type="PackedScene" uid="uid://ddx7ustv2r72f" path="res://road.tscn" id="2_ehkex"]
+[ext_resource type="Texture2D" uid="uid://yb08pav3ra0w" path="res://HDRI-20.exr" id="4_ppyta"]
+[ext_resource type="PackedScene" uid="uid://ip8f3ryeiccl" path="res://0_entity/stone.tscn" id="5_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://d1ulsuaqobgbw" path="res://0_entity/motor.tscn" id="6_g14j6"]
+[ext_resource type="PackedScene" uid="uid://6uf7gnkygun5" path="res://0_people/people_ai_atk.tscn" id="8_ehkex"]
+[ext_resource type="PackedScene" uid="uid://d6g66mqivyno" path="res://decoration/decoration.tscn" id="8_xersf"]
+[ext_resource type="PackedScene" uid="uid://brrkub3o3mcn3" path="res://decoration/tree_2.tscn" id="9_00tp4"]
+[ext_resource type="PackedScene" uid="uid://cjdddfjj42m0k" path="res://decoration/tree_3.tscn" id="10_77dp3"]
+[ext_resource type="PackedScene" uid="uid://nigkuywminh4" path="res://decoration/tree_4.tscn" id="11_5tkv4"]
+[ext_resource type="PackedScene" uid="uid://dx4wqw61tjfwp" path="res://decoration/tree_5.tscn" id="12_0m0f1"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gjxql"]
+panorama = ExtResource("4_ppyta")
+
+[sub_resource type="Sky" id="Sky_ehkex"]
+sky_material = SubResource("PanoramaSkyMaterial_gjxql")
+
+[sub_resource type="Environment" id="Environment_vkqoe"]
+background_mode = 2
+sky = SubResource("Sky_ehkex")
+sky_rotation = Vector3(0, 3.1415927, 0)
+
+[node name="Test" type="Control" unique_id=592543307]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8uh7m")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="." unique_id=629809048]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4.0
+offset_bottom = 1084.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer" unique_id=553928119]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer" unique_id=878474073]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(1920, 540)
+render_target_update_mode = 4
+
+[node name="World" type="Node3D" parent="HBoxContainer/SubViewportContainer/SubViewport" unique_id=1841628260]
+unique_name_in_owner = true
+
+[node name="road_export" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=1906258520 instance=ExtResource("2_ehkex")]
+transform = Transform3D(-2.1855694e-06, 0, -50, 0, 50, 0, 50, 0, -2.1855694e-06, 0, 0, -52.907448)
+
+[node name="Box" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=788388702 instance=ExtResource("2_6uqi0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.530647, 0, 0)
+
+[node name="People" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=168399767 instance=ExtResource("1_37kl0")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.616257, 2.3369846, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="HBoxContainer/SubViewportContainer/SubViewport/World/People" unique_id=1023503812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 60)
+remote_path = NodePath("../../Camera3D")
+
+[node name="People2" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=1429612057 instance=ExtResource("1_37kl0")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.61111, 13.20965, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="HBoxContainer/SubViewportContainer/SubViewport/World/People2" unique_id=1126097726]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 60)
+remote_path = NodePath("../../../../../SubViewportContainer2/SubViewport2/Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=592313241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.616257, 32.336983, 60)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=929293538]
+transform = Transform3D(1, 0, 0, 0, -0.61760384, 0.78648937, 0, -0.78648937, -0.61760384, 0, 15.6633625, 8.938957)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=1986910751]
+environment = SubResource("Environment_vkqoe")
+
+[node name="Stone" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=135290015 instance=ExtResource("5_ykrsh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.924015, 0.0011444092, -1.6865234)
+
+[node name="Motor" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=254561752 instance=ExtResource("6_g14j6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.882168, 0.06863403, 35.891914)
+
+[node name="Decoration" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=1674869911 instance=ExtResource("8_xersf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -57.233177)
+
+[node name="Decoration2" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=1277861791 instance=ExtResource("9_00tp4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.328804, 0, -62.329414)
+swing = true
+amplitude = 0.01
+cycle = 4.0
+
+[node name="Decoration3" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=260738107 instance=ExtResource("10_77dp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88.65129, 0, -56.772285)
+swing = true
+cycle = 4.0
+
+[node name="Decoration4" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=997596673 instance=ExtResource("11_5tkv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 165.24547, 1.6029396, -62.477684)
+swing = true
+cycle = 4.0
+
+[node name="Decoration5" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=1756313174 instance=ExtResource("12_0m0f1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -167.06691, 4.4415665, -58.384617)
+swing = true
+cycle = 4.0
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer" unique_id=1507382114]
+layout_mode = 2
+
+[node name="SubViewport2" type="SubViewport" parent="HBoxContainer/SubViewportContainer2" unique_id=1554938253]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(1920, 540)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="HBoxContainer/SubViewportContainer2/SubViewport2" unique_id=536297552]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.61111, 43.20965, 60)
+
+[node name="PeopleAIAtk" parent="." unique_id=245171571 instance=ExtResource("8_ehkex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.112305, 2.8188887, 53.774338)

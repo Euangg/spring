@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://6uf7gnkygun5"]
+
+[ext_resource type="PackedScene" uid="uid://bpx4k2enrwks4" path="res://0_people/people_ai.tscn" id="1_g34fn"]
+[ext_resource type="Script" uid="uid://cgcrwo82o14fh" path="res://0_people/people_ai_atk.gd" id="2_mk2ls"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4dg1"]
+size = Vector3(9.782, 5.852, 5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mk2ls"]
+viewport_path = NodePath("SubViewport")
+
+[node name="PeopleAIAtk" unique_id=168399767 instance=ExtResource("1_g34fn")]
+script = ExtResource("2_mk2ls")
+
+[node name="AreaPunch" type="Area3D" parent="Pivot" parent_id_path=PackedInt32Array(1576771767) index="3" unique_id=56399903]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/AreaPunch" index="0" unique_id=1433603986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5536256, 10.716795, 0)
+shape = SubResource("BoxShape3D_t4dg1")
+
+[node name="Sprite3D" parent="." index="7" unique_id=1900262565]
+texture = SubResource("ViewportTexture_mk2ls")
+
+[connection signal="area_entered" from="Pivot/HitboxPunch" to="." method="punch_check"]
+[connection signal="area_entered" from="Pivot/AreaPunch" to="." method="punch_check"]

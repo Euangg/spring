@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://elodal0xx3sh"]
+
+[sub_resource type="HeightMapShape3D" id="HeightMapShape3D_vkqoe"]
+
+[node name="PlainPiece" type="Area3D" unique_id=1441751849]
+collision_layer = 128
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=218739731]
+shape = SubResource("HeightMapShape3D_vkqoe")

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dxejoe4t86wuk"]
+
+[ext_resource type="Script" uid="uid://rio0ukst61pj" path="res://addons/scene_engine/scene_engine.gd" id="1_mo7cx"]
+
+[node name="SceneEngine" type="Node" unique_id=452897764]
+script = ExtResource("1_mo7cx")

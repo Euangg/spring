@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dgy61eqcq1g0j"]
+
+[ext_resource type="Script" uid="uid://qmxhyg3lik48" path="res://addons/sound_engine/sound_engine.gd" id="1_s72tn"]
+
+[node name="SoundEngine" type="Node" unique_id=1184599491]
+script = ExtResource("1_s72tn")
+
+[node name="Bgm" type="AudioStreamPlayer" parent="." unique_id=1291431638]
+unique_name_in_owner = true
+bus = &"Bgm"
+
+[node name="Sfx" type="Node" parent="." unique_id=851249085]
+unique_name_in_owner = true
+
+[connection signal="finished" from="Bgm" to="." method="_on_bgm_finished"]

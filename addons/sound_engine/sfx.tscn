@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c33qy6gtn75br"]
+
+[ext_resource type="Script" uid="uid://b4mvkg752hg73" path="res://addons/sound_engine/sfx.gd" id="1_yrolf"]
+
+[node name="Sfx" type="AudioStreamPlayer" unique_id=880360423]
+autoplay = true
+bus = &"Sfx"
+script = ExtResource("1_yrolf")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

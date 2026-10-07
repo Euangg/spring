@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://chcdl1btul72q"]
+
+[ext_resource type="Script" uid="uid://cqsa16bgkli4n" path="res://0_box/small_stone.gd" id="2_1rda8"]
+[ext_resource type="Texture2D" uid="uid://dnr0mkub4keyc" path="res://0_box/stone.png" id="3_01ngv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_01ngv"]
+size = Vector3(17.375244, 17.933817, 5)
+
+[node name="SmallStone" type="CharacterBody3D" unique_id=788388702]
+collision_layer = 0
+script = ExtResource("2_1rda8")
+can_be_pick = true
+can_be_hit = false
+metadata/_custom_type_script = "uid://bffxrrnqayjco"
+
+[node name="Pivot" type="Node3D" parent="." unique_id=999384823]
+
+[node name="Sprite" type="Hybrid2D3DSprite" parent="Pivot" unique_id=488656511]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.731907, 8.2978, 0)
+billboard = 0
+alpha_scissor_threshold = 0.3
+texture = ExtResource("3_01ngv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=503121629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.974684, 0)
+shape = SubResource("BoxShape3D_01ngv")
+
+[node name="Body" type="Area3D" parent="." unique_id=342860367]
+collision_layer = 32
+collision_mask = 640
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body" unique_id=1384378051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.975, 0)
+shape = SubResource("BoxShape3D_01ngv")
+
+[node name="TimerStep05" type="Timer" parent="." unique_id=1684102152]
+wait_time = 0.5
+one_shot = true
+
+[node name="TimerTrowed01" type="Timer" parent="." unique_id=52916265]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="be_throwed" from="." to="." method="_on_stone_be_throwed"]
+[connection signal="be_throwed" from="." to="." method="on_box_be_throwed"]

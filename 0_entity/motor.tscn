@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://d1ulsuaqobgbw"]
+
+[ext_resource type="PackedScene" uid="uid://d4cts8ipntp10" path="res://0_entity/entity.tscn" id="1_tmjyq"]
+[ext_resource type="Script" uid="uid://vqjyndb0iplr" path="res://0_entity/motor.gd" id="2_fxakn"]
+[ext_resource type="Texture2D" uid="uid://c23j0frmiy71g" path="res://0_entity/motor.png" id="2_op4p3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vkqoe"]
+size = Vector3(36.631104, 18.528687, 1)
+
+[node name="Motor" unique_id=135290015 instance=ExtResource("1_tmjyq")]
+collision_layer = 0
+script = ExtResource("2_fxakn")
+can_be_pick = true
+
+[node name="Sprite" type="Hybrid2D3DSprite" parent="Pivot" parent_id_path=PackedInt32Array(138689134) index="0" unique_id=211652010]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 12.815315, 0)
+billboard = 0
+texture = ExtResource("2_op4p3")
+
+[node name="Body" parent="." index="1" unique_id=1387250059]
+collision_layer = 544
+collision_mask = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body" index="0" unique_id=1427523155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.268372, 0)
+shape = SubResource("BoxShape3D_vkqoe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1284225887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.268372, 0)
+shape = SubResource("BoxShape3D_vkqoe")
+
+[connection signal="be_hitted" from="." to="." method="_on_be_hitted"]
+[connection signal="be_throwed" from="." to="." method="on_motor_be_thorwed"]
+[connection signal="area_entered" from="Body" to="." method="_on_body_area_entered"]

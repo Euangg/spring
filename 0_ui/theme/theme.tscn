@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://bopatsdd0cbcb"]
+
+[ext_resource type="Script" uid="uid://bf5lul4yxqut1" path="res://0_ui/theme/theme.gd" id="1_4euet"]
+[ext_resource type="PackedScene" uid="uid://ddx7ustv2r72f" path="res://road.tscn" id="2_jctv3"]
+[ext_resource type="Texture2D" uid="uid://yb08pav3ra0w" path="res://HDRI-20.exr" id="3_jokyh"]
+[ext_resource type="PackedScene" uid="uid://dn3sb41verlyj" path="res://0_people/people.tscn" id="4_lgvji"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lgvji"]
+panorama = ExtResource("3_jokyh")
+
+[sub_resource type="Sky" id="Sky_co6qv"]
+sky_material = SubResource("PanoramaSkyMaterial_lgvji")
+
+[sub_resource type="Environment" id="Environment_tmm7h"]
+background_mode = 2
+sky = SubResource("Sky_co6qv")
+sky_rotation = Vector3(0, 3.1415927, 0)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lgvji"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tmm7h"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_i2imb"]
+viewport_path = NodePath("SubViewport3")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vkqoe"]
+size = Vector3(10.43103, 15.704102, 125.88037)
+
+[node name="Theme" type="Control" unique_id=1028975703]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4euet")
+
+[node name="road_export" parent="." unique_id=1906258520 instance=ExtResource("2_jctv3")]
+transform = Transform3D(-4.371139e-07, 0, -10, 0, 10, 0, 10, 0, -4.371139e-07, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=199512128]
+transform = Transform3D(1, 0, 0, 0, -0.61760384, 0.78648937, 0, -0.78648937, -0.61760384, 0, 15.6633625, 8.938957)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1953005251]
+environment = SubResource("Environment_tmm7h")
+
+[node name="Sprite3D" type="Hybrid2D3DSprite" parent="." unique_id=147320708]
+unique_name_in_owner = true
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 81.039795, 12.304184, -3.223895)
+offset = Vector2(0, -15)
+billboard = 0
+texture = SubResource("ViewportTexture_lgvji")
+
+[node name="Sprite3D2" type="Hybrid2D3DSprite" parent="." unique_id=2019521173]
+unique_name_in_owner = true
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -104.95324, 12.304184, -3.223895)
+offset = Vector2(0, -15)
+billboard = 0
+texture = SubResource("ViewportTexture_tmm7h")
+
+[node name="Sprite3D3" type="Sprite3D" parent="." unique_id=674835981]
+unique_name_in_owner = true
+transform = Transform3D(25, 0, 0, 0, -1.0927847e-06, 25, 0, -25, -1.0927847e-06, 0, 0.5, 22.687)
+texture_filter = 0
+texture = SubResource("ViewportTexture_i2imb")
+
+[node name="People" parent="." unique_id=168399767 instance=ExtResource("4_lgvji")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43099976, 0, 14.226349)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="People" unique_id=594784002]
+transform = Transform3D(1, 0, 0, 0, 0.9396926, 0.34202012, 0, -0.34202012, 0.9396926, 0, 35, 50)
+remote_path = NodePath("../../Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=784705823]
+transform = Transform3D(1, 0, 0, 0, 0.9396926, 0.34202012, 0, -0.34202012, 0.9396926, -0.43099976, 35, 64.22635)
+
+[node name="AreaPlay" type="Area3D" parent="." unique_id=1091227066]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaPlay" unique_id=222587983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.99975, 7.352051, 11.5095215)
+shape = SubResource("BoxShape3D_vkqoe")
+
+[node name="AreaToturial" type="Area3D" parent="." unique_id=735595566]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaToturial" unique_id=988647244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.9657, 7.352051, 11.5095215)
+shape = SubResource("BoxShape3D_vkqoe")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1911944125]
+transparent_bg = true
+size = Vector2i(154, 100)
+
+[node name="Label" type="Label" parent="SubViewport" unique_id=12231596]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -40.5
+offset_right = 32.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "出发、去混"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport2" type="SubViewport" parent="." unique_id=2039759304]
+transparent_bg = true
+size = Vector2i(436, 100)
+
+[node name="Label" type="Label" parent="SubViewport2" unique_id=1774123042]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -40.5
+offset_right = 32.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "宝宝巴士、教程"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubViewport3" type="SubViewport" parent="." unique_id=1743138362]
+transparent_bg = true
+size = Vector2i(154, 100)
+
+[node name="Label" type="Label" parent="SubViewport3" unique_id=250196170]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -40.5
+offset_right = 32.0
+offset_bottom = 40.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 30
+text = "WSAD移动"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="AreaPlay" to="." method="_on_area_play_area_entered"]
+[connection signal="area_entered" from="AreaToturial" to="." method="_on_area_toturial_area_entered"]
