@@ -5,13 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://wkr5syfmhcn7" path="res://util/health_bar/health_bar.tscn" id="3_t4dg1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_co6qv"]
-size = Vector3(11.004, 6.5945354, 5)
+size = Vector3(11.004, 6.595, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4dg1"]
-size = Vector3(9.782, 5.852, 5)
+size = Vector3(12.5345545, 5.852, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vkqoe"]
-size = Vector3(12.186, 24.814, 5)
+size = Vector3(12.186, 24.814, 6)
 
 [sub_resource type="Animation" id="Animation_t4dg1"]
 length = 0.001
@@ -198,7 +198,6 @@ can_be_step = true
 [node name="Pivot" type="Node3D" parent="." unique_id=1576771767]
 
 [node name="Sprite" type="Hybrid2D3DSprite" parent="Pivot" unique_id=239547231]
-unique_name_in_owner = true
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 11.888, 0)
 flip_h = true
 billboard = 0
@@ -226,7 +225,7 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/HitboxPunch" unique_id=499878271]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5536256, 10.716795, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.177348, 10.716795, 0)
 shape = SubResource("BoxShape3D_t4dg1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=5490519]
@@ -247,10 +246,6 @@ libraries/ = SubResource("AnimationLibrary_t4dg1")
 
 [node name="TimerStep05" type="Timer" parent="." unique_id=1164598157]
 wait_time = 0.5
-one_shot = true
-
-[node name="TimerTrowed01" type="Timer" parent="." unique_id=1070854314]
-wait_time = 0.1
 one_shot = true
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=299840158]
@@ -297,7 +292,6 @@ wait_time = 3.0
 one_shot = true
 autostart = true
 
-[connection signal="be_hitted" from="." to="." method="_on_people_be_hitted"]
 [connection signal="area_entered" from="Pivot/HitboxKick" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="Pivot/HitboxPunch" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="TimerSpeak" to="." method="_on_timer_speak_timeout"]

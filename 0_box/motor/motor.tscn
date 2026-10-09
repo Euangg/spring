@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d1ulsuaqobgbw"]
 
 [ext_resource type="PackedScene" uid="uid://d4cts8ipntp10" path="res://0_entity/entity.tscn" id="1_tmjyq"]
-[ext_resource type="Script" uid="uid://vqjyndb0iplr" path="res://0_entity/motor.gd" id="2_fxakn"]
-[ext_resource type="Texture2D" uid="uid://c23j0frmiy71g" path="res://0_entity/motor.png" id="2_op4p3"]
+[ext_resource type="Script" uid="uid://vqjyndb0iplr" path="res://0_box/motor/motor.gd" id="2_fxakn"]
+[ext_resource type="Texture2D" uid="uid://c23j0frmiy71g" path="res://0_box/motor/motor.png" id="2_op4p3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vkqoe"]
 size = Vector3(36.631104, 18.528687, 1)
@@ -25,10 +25,8 @@ collision_mask = 512
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.268372, 0)
 shape = SubResource("BoxShape3D_vkqoe")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4" unique_id=1284225887]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=1284225887]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.268372, 0)
 shape = SubResource("BoxShape3D_vkqoe")
 
-[connection signal="be_hitted" from="." to="." method="_on_be_hitted"]
-[connection signal="be_throwed" from="." to="." method="on_motor_be_thorwed"]
 [connection signal="area_entered" from="Body" to="." method="_on_body_area_entered"]

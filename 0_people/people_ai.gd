@@ -28,7 +28,6 @@ func set_a_target(range:float):
 		if %RayCast3D.is_colliding():
 			var p:Vector3=%RayCast3D.get_collision_point()
 			target_pos=Vector2(p.x,p.z)
-			print("next target:",target_pos)
 		else:pass
 
 

@@ -4,13 +4,16 @@
 [ext_resource type="Script" uid="uid://cgcrwo82o14fh" path="res://0_people/people_ai_atk.gd" id="2_mk2ls"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4dg1"]
-size = Vector3(9.782, 5.852, 5)
+size = Vector3(9.782, 5.852, 6)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mk2ls"]
 viewport_path = NodePath("SubViewport")
 
 [node name="PeopleAIAtk" unique_id=168399767 instance=ExtResource("1_g34fn")]
 script = ExtResource("2_mk2ls")
+
+[node name="Sprite" parent="Pivot" parent_id_path=PackedInt32Array(1576771767) index="0" unique_id=239547231]
+modulate = Color(1, 0, 0, 1)
 
 [node name="AreaPunch" type="Area3D" parent="Pivot" parent_id_path=PackedInt32Array(1576771767) index="3" unique_id=56399903]
 collision_layer = 0

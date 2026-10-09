@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bp1w4ql41f1fn"]
+
+[ext_resource type="PackedScene" uid="uid://l70jgosckixr" path="res://glb/lmd.glb" id="1_2p01s"]
+
+[node name="lmd" unique_id=846646094 instance=ExtResource("1_2p01s")]

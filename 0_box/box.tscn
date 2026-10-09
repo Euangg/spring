@@ -9,6 +9,7 @@ size = Vector3(6.858, 6.769, 5)
 [node name="Box" type="CharacterBody3D" unique_id=788388702]
 collision_layer = 0
 script = ExtResource("1_l1g86")
+can_hit = true
 can_be_pick = true
 can_step = true
 can_be_step = true
@@ -31,7 +32,7 @@ shape = SubResource("BoxShape3D_l1g86")
 
 [node name="Body" type="Area3D" parent="." unique_id=342860367]
 collision_layer = 32
-collision_mask = 128
+collision_mask = 640
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body" unique_id=1384378051]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3922763, 0)
@@ -40,9 +41,3 @@ shape = SubResource("BoxShape3D_l1g86")
 [node name="TimerStep05" type="Timer" parent="." unique_id=1684102152]
 wait_time = 0.5
 one_shot = true
-
-[node name="TimerTrowed01" type="Timer" parent="." unique_id=52916265]
-wait_time = 0.1
-one_shot = true
-
-[connection signal="be_throwed" from="." to="." method="on_box_be_throwed"]

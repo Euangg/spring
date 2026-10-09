@@ -10,19 +10,20 @@ func set_word(value:String):
 	if not is_node_ready():await ready
 	%Sprite.frame=arr_word.find(word)
 
-var speed=100
+var motor_speed=150
 
 func _ready() -> void:
 	super._ready()
 	%Sprite.frame=arr_word.find(word)
-const SFX_COMPOSE = preload("uid://65w85es5laiv")
 
+const SFX_COMPOSE = preload("uid://65w85es5laiv")
 
 const PEOPLE = preload("uid://dn3sb41verlyj")
 const PEOPLE_AI = preload("uid://bpx4k2enrwks4")
 const STONE = preload("uid://ip8f3ryeiccl")
 const MOTOR = preload("uid://d1ulsuaqobgbw")
 const SMALL_STONE = preload("uid://chcdl1btul72q")
+const PEOPLE_AI_ATK = preload("uid://6uf7gnkygun5")
 func compound_to(packed:PackedScene):
 	var comp:Entity=packed.instantiate()
 	comp.position=under_foot.position
@@ -33,17 +34,26 @@ func compound_to(packed:PackedScene):
 	
 	match packed:
 		MOTOR:
-			comp.velocity.x=speed if randf()>0.5 else -speed
+			var motor:Motor=comp
+			motor.velocity.x=motor_speed if randf()>0.5 else -motor_speed
 			if last_mover:
-				var v_p=Vector2(last_mover.position.x,last_mover.position.z)
-				comp.velocity.x=last_mover.direction*speed
+				var vp_motor=Vector2(motor.position.x,motor.position.z)
+				motor.velocity.x=last_mover.direction*motor_speed
 				if last_mover.enemy:
-					var v_e=Vector2(last_mover.enemy.position.x,last_mover.enemy.position.z)
-					var dir=(v_e-v_p).normalized()
-					comp.velocity.x=dir.x*speed
-					comp.velocity.z=dir.y*speed
-			direction=sign(velocity.x)
-
+					var enemy:People=last_mover.enemy
+					print("motor target:",enemy)
+					var vp_enemy=Vector2(enemy.position.x,enemy.position.z)
+					var dir=(vp_enemy-vp_motor).normalized()
+					motor.velocity.x=dir.x*motor_speed
+					motor.velocity.z=dir.y*motor_speed
+			motor.direction=sign(motor.velocity.x)
+		PEOPLE_AI:
+			if last_mover:
+				var ppp:People=comp
+				ppp.current_skin=last_mover.current_skin
+		PEOPLE_AI_ATK:
+			if last_mover:
+				comp.enemy=last_mover.enemy
 func compound_hand_power():
 	under_foot.vanish()
 	vanish()
@@ -73,7 +83,7 @@ func _on_stepped_05(target: Entity) -> void:
 					"莫":vanish()
 					"手":compound_to(PEOPLE_AI)
 					"土":compound_to(STONE)
-					"力":compound_to(PEOPLE_AI)
+					"力":compound_to(PEOPLE_AI_ATK)
 			"手":
 				match target.word:
 					"麻":compound_to(MOTOR)
@@ -91,7 +101,7 @@ func _on_stepped_05(target: Entity) -> void:
 			"力":
 				match target.word:
 					"麻":pass
-					"莫":compound_to(PEOPLE_AI)
+					"莫":compound_to(PEOPLE_AI_ATK)
 					"手":compound_hand_power()
 					"土":compound_to(SMALL_STONE)
 					"力":vanish()

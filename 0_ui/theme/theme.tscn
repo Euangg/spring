@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ddx7ustv2r72f" path="res://road.tscn" id="2_jctv3"]
 [ext_resource type="Texture2D" uid="uid://yb08pav3ra0w" path="res://HDRI-20.exr" id="3_jokyh"]
 [ext_resource type="PackedScene" uid="uid://dn3sb41verlyj" path="res://0_people/people.tscn" id="4_lgvji"]
+[ext_resource type="Texture2D" uid="uid://d2jesrqn1hjud" path="res://0_ui/theme/title.png" id="4_tmm7h"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lgvji"]
 panorama = ExtResource("3_jokyh")
@@ -66,6 +67,11 @@ unique_name_in_owner = true
 transform = Transform3D(25, 0, 0, 0, -1.0927847e-06, 25, 0, -25, -1.0927847e-06, 0, 0.5, 22.687)
 texture_filter = 0
 texture = SubResource("ViewportTexture_i2imb")
+
+[node name="Hybrid2D3DSprite" type="Hybrid2D3DSprite" parent="." unique_id=190251707]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 32.584583, -51.75351)
+texture = ExtResource("4_tmm7h")
 
 [node name="People" parent="." unique_id=168399767 instance=ExtResource("4_lgvji")]
 unique_name_in_owner = true

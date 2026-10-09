@@ -5,13 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://wkr5syfmhcn7" path="res://util/health_bar/health_bar.tscn" id="3_alwjd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_co6qv"]
-size = Vector3(11.004, 6.5945354, 5)
+size = Vector3(11.004, 6.595, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4dg1"]
-size = Vector3(9.782, 5.852, 5)
+size = Vector3(9.782, 5.852, 6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vkqoe"]
-size = Vector3(12.186, 24.814, 5)
+size = Vector3(12.186, 24.814, 6)
 
 [sub_resource type="Animation" id="Animation_t4dg1"]
 length = 0.001
@@ -249,7 +249,7 @@ libraries/ = SubResource("AnimationLibrary_t4dg1")
 wait_time = 0.5
 one_shot = true
 
-[node name="TimerTrowed01" type="Timer" parent="." unique_id=1070854314]
+[node name="TimerThrowerProtect" type="Timer" parent="." unique_id=1070854314]
 wait_time = 0.1
 one_shot = true
 

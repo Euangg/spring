@@ -10,6 +10,7 @@ size = Vector3(11.972, 11.981, 5)
 [node name="Word" unique_id=788388702 instance=ExtResource("1_nwcic")]
 script = ExtResource("2_ji23d")
 word = "麻"
+can_hit = false
 
 [node name="Sprite" parent="Pivot" parent_id_path=PackedInt32Array(999384823) index="0" unique_id=488656511]
 unique_name_in_owner = true

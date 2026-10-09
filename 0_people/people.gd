@@ -1,10 +1,18 @@
 class_name People
 extends Entity
+const TOMBSTONE = preload("uid://ip8f3ryeiccl")
 
+enum SKIN{PURPLE,ORANGE}
+@onready var sprite: Hybrid2D3DSprite = $Pivot/Sprite
 const SKIN_ORANGE = preload("uid://bnqkl2m5cyjjf")
 const SKIN_PURPLE = preload("uid://blgtglfftw7f3")
-func set_skin(skin:Texture2D):
-	%Sprite.texture=skin
+var current_skin:SKIN=SKIN.PURPLE:set=set_skin
+func set_skin(skin):
+	if not is_node_ready():await ready
+	current_skin=skin
+	match skin:
+		SKIN.PURPLE:sprite.texture=SKIN_PURPLE
+		SKIN.ORANGE:sprite.texture=SKIN_ORANGE
 
 enum State{NULL,IDLE,WALK,
 	AIR,
@@ -77,11 +85,11 @@ func _physics_process(delta: float) -> void:
 	var try_lift=(try_punch or try_kick)
 	if on_head:
 		if try_kick or try_punch:
-			on_head.follow_under_foot()
+			on_head.follow_under()
 			on_head.velocity.x=throw*direction
 			on_head.velocity.y=velocity.y+throw
 			on_head.be_throwed.emit(self)
-			on_head.leave_from_under()
+			on_head.disbind_from_under()
 			try_kick=false
 			try_punch=false
 			SoundEngine.play_sfx(preload("uid://dxbg0nsy4grts"))
@@ -95,7 +103,7 @@ func _physics_process(delta: float) -> void:
 					if e==under_foot:continue
 					if e.under_foot:continue
 					if e.can_be_pick:
-						e.step_to(self)
+						e.bind_to_under(self)
 						try_punch=false
 						try_kick=false
 						break
@@ -134,6 +142,7 @@ func _physics_process(delta: float) -> void:
 		State.SLEEP:
 			if %Ap.is_playing():pass
 			else:if hp<=0:
+				boom_thing(TOMBSTONE,Vector3.ZERO)
 				vanish()
 				SoundEngine.play_sfx(preload("uid://bvbcarfw8qqst"))
 	#2/3.状态切换
@@ -171,13 +180,13 @@ func _physics_process(delta: float) -> void:
 	match current_state:
 		State.IDLE:
 			refresh_direction()
-			if on_head:%Sprite.frame=12
-			else:%Sprite.frame=0
+			if on_head:sprite.frame=12
+			else:sprite.frame=0
 			if under_foot:
 				if try_jump:
 					velocity.y+=p_jump
 					velocity.x=speed*direction
-					leave_from_under()
+					disbind_from_under()
 			else:
 				velocity.x=speed*input.x
 				velocity.z=speed*input.y
@@ -186,25 +195,25 @@ func _physics_process(delta: float) -> void:
 			refresh_direction()
 			if on_head:
 				match ap_tick:
-					0:%Sprite.frame=10
-					1:%Sprite.frame=11
+					0:sprite.frame=10
+					1:sprite.frame=11
 			else:
 				match ap_tick:
-					0:%Sprite.frame=8
-					1:%Sprite.frame=9
+					0:sprite.frame=8
+					1:sprite.frame=9
 			velocity.x=speed*input.x
 			velocity.z=speed*input.y
 			if try_jump:velocity.y+=p_jump
 		State.AIR:
 			refresh_direction()
-			if on_head:%Sprite.frame=13
-			else:%Sprite.frame=2
+			if on_head:sprite.frame=13
+			else:sprite.frame=2
 			velocity.x=speed*input.x
 		State.ATK_PUNCH,State.ATK_KICK:pass
 		State.HURT:pass
 		
 	#强制
-	if under_foot:follow_under_foot()
+	if under_foot:follow_under()
 	else:
 		#find_step()
 		velocity.y-=200*delta
@@ -223,8 +232,8 @@ func end_kick():%HitboxKick.monitoring=false
 func begin_punch():%HitboxPunch.monitoring=true
 func end_punch():%HitboxPunch.monitoring=false
 func begin_sleep():
-	if under_foot:leave_from_under()
-	if on_head:on_head.leave_from_under()
+	if under_foot:disbind_from_under()
+	if on_head:on_head.disbind_from_under()
 	can_be_pick=true
 	can_be_step=false
 	can_step=false
@@ -273,10 +282,12 @@ func _on_timer_speak_timeout() -> void:
 	%AudioStreamPlayer.stream=ARR_SFX.pick_random()
 	%AudioStreamPlayer.play()
 
-func _on_people_be_hitted(entity: Entity) -> void:
-	if randf()<0.1:
+static var arr_word_drop=["麻","手","力"]
+func _on_be_hitted(e:Entity)->void:
+	super._on_be_hitted(e)
+	if randf()<0.4:
 		var v:Vector3=Vector3.ZERO
 		v.x=-50*direction
 		v.y=100
 		var w:Word=boom_thing(load("uid://due6j0es4d4s3"),v)
-		w.set_word(Word.arr_word.pick_random())
+		w.set_word(arr_word_drop.pick_random())

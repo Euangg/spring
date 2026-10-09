@@ -14,7 +14,7 @@ func _ready() -> void:
 	%People.set_control_p1()
 	%People.enemy=%People2
 	%People2.set_control_p2()
-	%People2.set_skin(People.SKIN_ORANGE)
+	%People2.set_skin(People.SKIN.ORANGE)
 	%People2.enemy=%People
 	
 	var control_player:People=%People if player_controller==1 else %People2
@@ -57,3 +57,7 @@ func add_joypad_axis(action_name:StringName,joy_axis:JoyAxis,amount:float):
 	event.axis=joy_axis
 	event.axis_value=amount
 	InputMap.action_add_event(action_name,event)
+
+
+func tip_end():
+	%Label.show()

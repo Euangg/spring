@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://rmgky52d5my7" path="res://0_box/box.tscn" id="2_6uqi0"]
 [ext_resource type="PackedScene" uid="uid://ddx7ustv2r72f" path="res://road.tscn" id="2_ehkex"]
 [ext_resource type="Texture2D" uid="uid://yb08pav3ra0w" path="res://HDRI-20.exr" id="4_ppyta"]
-[ext_resource type="PackedScene" uid="uid://ip8f3ryeiccl" path="res://0_entity/stone.tscn" id="5_ykrsh"]
-[ext_resource type="PackedScene" uid="uid://d1ulsuaqobgbw" path="res://0_entity/motor.tscn" id="6_g14j6"]
+[ext_resource type="PackedScene" uid="uid://ip8f3ryeiccl" path="res://0_collide/tombstone.tscn" id="5_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://d1ulsuaqobgbw" path="res://0_box/motor/motor.tscn" id="6_g14j6"]
 [ext_resource type="PackedScene" uid="uid://6uf7gnkygun5" path="res://0_people/people_ai_atk.tscn" id="8_ehkex"]
 [ext_resource type="PackedScene" uid="uid://d6g66mqivyno" path="res://decoration/decoration.tscn" id="8_xersf"]
 [ext_resource type="PackedScene" uid="uid://brrkub3o3mcn3" path="res://decoration/tree_2.tscn" id="9_00tp4"]
@@ -73,6 +73,7 @@ remote_path = NodePath("../../Camera3D")
 [node name="People2" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=1429612057 instance=ExtResource("1_37kl0")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.61111, 13.20965, 0)
+direction = -1
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="HBoxContainer/SubViewportContainer/SubViewport/World/People2" unique_id=1126097726]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 60)
@@ -94,11 +95,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.924015, 0.0011444092, -1.
 [node name="Motor" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=254561752 instance=ExtResource("6_g14j6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.882168, 0.06863403, 35.891914)
 
+[node name="PeopleAIAtk" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=245171571 instance=ExtResource("8_ehkex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.112305, 2.8188887, 53.774338)
+
 [node name="Decoration" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=1674869911 instance=ExtResource("8_xersf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -57.233177)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.414368, 0, -57.233177)
 
 [node name="Decoration2" parent="HBoxContainer/SubViewportContainer/SubViewport/World" unique_id=1277861791 instance=ExtResource("9_00tp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.328804, 0, -62.329414)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -253.77206, 0, -62.329414)
 swing = true
 amplitude = 0.01
 cycle = 4.0
@@ -130,5 +134,28 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="HBoxContainer/SubViewportContainer2/SubViewport2" unique_id=536297552]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.61111, 43.20965, 60)
 
-[node name="PeopleAIAtk" parent="." unique_id=245171571 instance=ExtResource("8_ehkex")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.112305, 2.8188887, 53.774338)
+[node name="Label" type="Label" parent="." unique_id=701494307]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -425.0
+offset_top = -112.5
+offset_right = 425.0
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 11
+theme_override_font_sizes/font_size = 100
+text = "恭喜你，战胜对手！
+按[Enter]重新开混"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="tree_exited" from="HBoxContainer/SubViewportContainer/SubViewport/World/People" to="." method="tip_end"]
+[connection signal="tree_exited" from="HBoxContainer/SubViewportContainer/SubViewport/World/People2" to="." method="tip_end"]

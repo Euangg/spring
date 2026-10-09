@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dorcc61sisjgk"]
+
+[ext_resource type="PackedScene" uid="uid://d2lmt8vg2dn3i" path="res://glb/bld.glb" id="1_mhwo8"]
+
+[node name="bld" unique_id=1111599437 instance=ExtResource("1_mhwo8")]

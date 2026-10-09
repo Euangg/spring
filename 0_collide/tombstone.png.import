@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b3jlnlecgq3er"
-path.s3tc="res://.godot/imported/tombstone.png-be2081759472e5c858bd45120fa35ebb.s3tc.ctex"
+path.s3tc="res://.godot/imported/tombstone.png-9e943c5836cfd6f751696079302b17b7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://0_entity/tombstone.png"
-dest_files=["res://.godot/imported/tombstone.png-be2081759472e5c858bd45120fa35ebb.s3tc.ctex"]
+source_file="res://0_collide/tombstone.png"
+dest_files=["res://.godot/imported/tombstone.png-9e943c5836cfd6f751696079302b17b7.s3tc.ctex"]
 
 [params]
 

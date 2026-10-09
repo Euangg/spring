@@ -11,6 +11,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(delta: float) -> void:
 	t+=delta
 	%Sprite3D.offset.y=15*sin(2*PI*t)
+	%Hybrid2D3DSprite.offset.y=30*sin(2*PI*t)
 
 func _on_area_play_area_entered(area: Area3D) -> void:
 	SceneEngine.switch(load(Global.UI_PALY))
