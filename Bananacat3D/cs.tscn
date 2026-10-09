@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b6kcefax1didn"]
+
+[ext_resource type="PackedScene" uid="uid://d2vr0bx8h83g1" path="res://Bananacat3D/还没摆好东西看一下比例初版规模1.fbx" id="1_q8wja"]
+
+[node name="Node3D" type="Node3D" unique_id=143695660]
+
+[node name="还没摆好东西看一下比例初版规模1" parent="." unique_id=1268833520 instance=ExtResource("1_q8wja")]
